@@ -200,7 +200,7 @@ void CALIBRATION_loop(void)
     case CS_DIR_PP_LOOP:
         phase_set += calib_phase_vel * CURRENT_MEASURE_PERIOD;
         FOC_voltage(voltage, 0, phase_set);
-        if (phase_set >= 4.0f * M_2PI) {
+        if (phase_set >= 8.0f * M_2PI) {
             mCalibStep = CS_DIR_PP_END;
         }
         break;
@@ -216,7 +216,7 @@ void CALIBRATION_loop(void)
         }
 
         // Motor pole pairs
-        UsrConfig.motor_pole_pairs = round(4.0f / ABS(diff / ENCODER_CPR_F));
+        UsrConfig.motor_pole_pairs = round(8.0f / ABS(diff / ENCODER_CPR_F));
 
         {
             uint8_t data[4];
